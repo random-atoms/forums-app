@@ -1,2 +1,2 @@
 # forums-app
-An exercise in getting ChatGPT to build me a forums web application
+Testing ChatGPT's ability to create a new django based public forums app
