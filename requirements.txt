@@ -1,0 +1,11 @@
+# Django framework
+Django>=4.2,<5.0
+
+# Django REST Framework (optional, useful for API development)
+djangorestframework>=3.14.0
+
+# PostgreSQL database adapter
+psycopg2-binary>=2.9.0
+
+# Gunicorn for serving the application in production (optional)
+gunicorn>=20.1.0

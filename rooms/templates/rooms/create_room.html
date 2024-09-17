@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create Room</title>
+</head>
+<body>
+    <h1>Create a New Room</h1>
+    <form method="POST">
+        {% csrf_token %}
+        <label for="name">Room Name:</label>
+        <input type="text" id="name" name="name" required>
+        <br>
+        <label for="description">Description:</label>
+        <textarea id="description" name="description"></textarea>
+        <br>
+        <button type="submit">Create Room</button>
+    </form>
+    <a href="{% url 'home' %}">Back to Home</a>
+</body>
+</html>

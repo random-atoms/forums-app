@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Forum Home</title>
+</head>
+<body>
+    <h1>Forum Home</h1>
+    <button onclick="window.location.href='{% url 'create_room' %}'">Create a Room</button>
+    <h2>Available Rooms:</h2>
+    <ul>
+        {% for room in rooms %}
+            <li>
+                <a href="{% url 'room_detail' room.id %}">{{ room.name }}</a>
+            </li>
+        {% empty %}
+            <li>No rooms available. Create one!</li>
+        {% endfor %}
+    </ul>
+</body>
+</html>
