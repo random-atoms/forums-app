@@ -2,32 +2,52 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{{ room.name }}</title>
+    <!-- Import Materialize CSS and Icons -->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css" rel="stylesheet">
 </head>
 <body>
-    <h1>{{ room.name }}</h1>
-    <p>{{ room.description }}</p>
 
-    <h2>Posts:</h2>
-    <ul>
-        {% for post in posts %}
-            <li>
-                <strong>{{ post.user.username }}</strong>: {{ post.content }} <br>
-                <small>Posted on {{ post.created_at }}</small>
-            </li>
-        {% empty %}
-            <li>No posts yet. Be the first to post!</li>
-        {% endfor %}
-    </ul>
+    <nav>
+        <div class="nav-wrapper blue">
+            <a href="{% url 'home' %}" class="brand-logo center">{{ room.name }}</a>
+        </div>
+    </nav>
 
-    <h3>Post a Message</h3>
-    <form method="POST" action="{% url 'post_message' room.id %}">
-        {% csrf_token %}
-        <textarea name="content" required></textarea>
+    <div class="container">
+        <h5>Room: {{ room.name }}</h5>
+        <p>{{ room.description }}</p>
+
+        <h6>Posts:</h6>
+        <ul class="collection">
+            {% for post in posts %}
+                <li class="collection-item">
+                    <span class="title"><strong>{{ post.user.username }}</strong></span>
+                    <p>{{ post.content }}</p>
+                    <small class="grey-text">{{ post.created_at }}</small>
+                </li>
+            {% empty %}
+                <li class="collection-item">No posts yet. Be the first to post!</li>
+            {% endfor %}
+        </ul>
+
+        <h6>Post a Message</h6>
+        <form method="POST" action="{% url 'post_message' room.id %}">
+            {% csrf_token %}
+            <div class="input-field">
+                <textarea name="content" class="materialize-textarea" required></textarea>
+                <label for="content">Your Message</label>
+            </div>
+            <button type="submit" class="btn waves-effect waves-light blue">Post</button>
+        </form>
         <br>
-        <button type="submit">Post</button>
-    </form>
-    <a href="{% url 'home' %}">Back to Home</a>
+        <a href="{% url 'home' %}" class="btn-flat waves-effect">Back to Home</a>
+    </div>
+
+    <!-- Import Materialize JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
 </body>
 </html>

@@ -2,21 +2,43 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Forum Home</title>
+    <!-- Import Materialize CSS and Icons -->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css" rel="stylesheet">
 </head>
 <body>
-    <h1>Forum Home</h1>
-    <button onclick="window.location.href='{% url 'create_room' %}'">Create a Room</button>
-    <h2>Available Rooms:</h2>
-    <ul>
-        {% for room in rooms %}
-            <li>
-                <a href="{% url 'room_detail' room.id %}">{{ room.name }}</a>
-            </li>
-        {% empty %}
-            <li>No rooms available. Create one!</li>
-        {% endfor %}
-    </ul>
+
+    <nav>
+        <div class="nav-wrapper blue">
+            <a href="#" class="brand-logo center">Forum</a>
+        </div>
+    </nav>
+
+    <div class="container">
+        <h4>Available Rooms</h4>
+        <div class="row">
+            <a href="{% url 'create_room' %}" class="btn waves-effect waves-light blue">Create a Room</a>
+        </div>
+
+        <div class="row">
+            <ul class="collection">
+                {% for room in rooms %}
+                    <li class="collection-item">
+                        <a href="{% url 'room_detail' room.id %}" class="black-text">
+                            <i class="material-icons left">forum</i>{{ room.name }}
+                        </a>
+                    </li>
+                {% empty %}
+                    <li class="collection-item">No rooms available. Create one!</li>
+                {% endfor %}
+            </ul>
+        </div>
+    </div>
+
+    <!-- Import Materialize JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
 </body>
 </html>

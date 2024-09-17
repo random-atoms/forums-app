@@ -2,21 +2,40 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Create Room</title>
+    <!-- Import Materialize CSS and Icons -->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css" rel="stylesheet">
 </head>
 <body>
-    <h1>Create a New Room</h1>
-    <form method="POST">
-        {% csrf_token %}
-        <label for="name">Room Name:</label>
-        <input type="text" id="name" name="name" required>
+
+    <nav>
+        <div class="nav-wrapper blue">
+            <a href="{% url 'home' %}" class="brand-logo center">Create a Room</a>
+        </div>
+    </nav>
+
+    <div class="container">
+        <h5>Create a New Room</h5>
+        <form method="POST">
+            {% csrf_token %}
+            <div class="input-field">
+                <input type="text" id="name" name="name" required>
+                <label for="name">Room Name</label>
+            </div>
+            <div class="input-field">
+                <textarea id="description" name="description" class="materialize-textarea"></textarea>
+                <label for="description">Description</label>
+            </div>
+            <button type="submit" class="btn waves-effect waves-light blue">Create Room</button>
+        </form>
         <br>
-        <label for="description">Description:</label>
-        <textarea id="description" name="description"></textarea>
-        <br>
-        <button type="submit">Create Room</button>
-    </form>
-    <a href="{% url 'home' %}">Back to Home</a>
+        <a href="{% url 'home' %}" class="btn-flat waves-effect">Back to Home</a>
+    </div>
+
+    <!-- Import Materialize JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
 </body>
 </html>
