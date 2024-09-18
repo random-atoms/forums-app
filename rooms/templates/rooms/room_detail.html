@@ -11,43 +11,47 @@
 </head>
 <body>
 
-    <nav>
-        <div class="nav-wrapper blue">
-            <a href="{% url 'home' %}" class="brand-logo center">{{ room.name }}</a>
-        </div>
-    </nav>
-
-    <div class="container">
-        <h5>Room: {{ room.name }}</h5>
-        <p>{{ room.description }}</p>
-
-        <h6>Posts:</h6>
-        <ul class="collection">
-            {% for post in posts %}
-                <li class="collection-item">
-                    <span class="title"><strong>{{ post.user.username }}</strong></span>
-                    <p>{{ post.content }}</p>
-                    <small class="grey-text">{{ post.created_at }}</small>
-                </li>
-            {% empty %}
-                <li class="collection-item">No posts yet. Be the first to post!</li>
-            {% endfor %}
-        </ul>
-
-        <h6>Post a Message</h6>
-        <form method="POST" action="{% url 'post_message' room.id %}">
-            {% csrf_token %}
-            <div class="input-field">
-                <textarea name="content" class="materialize-textarea" required></textarea>
-                <label for="content">Your Message</label>
-            </div>
-            <button type="submit" class="btn waves-effect waves-light blue">Post</button>
-        </form>
-        <br>
-        <a href="{% url 'home' %}" class="btn-flat waves-effect">Back to Home</a>
+<nav>
+    <div class="nav-wrapper blue">
+        <a href="{% url 'home' %}" class="brand-logo center">{{ room.name }}</a>
     </div>
+</nav>
 
-    <!-- Import Materialize JS -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+<div class="container">
+    <h5>Room: {{ room.name }}</h5>
+    <p>{{ room.description }}</p>
+
+    <h6>Posts:</h6>
+    <ul class="collection">
+        {% for post in posts %}
+            <li class="collection-item">
+                <span class="title"><strong>{{ post.user.username }}</strong></span>
+                <p>{{ post.content }}</p>
+                <small class="grey-text">{{ post.created_at }}</small>
+            </li>
+        {% empty %}
+            <li class="collection-item">No posts yet. Be the first to post!</li>
+        {% endfor %}
+    </ul>
+
+    <h6>Post a Message</h6>
+    <form method="POST" action="{% url 'post_message' room.id %}">
+        {% csrf_token %}
+        <div class="input-field">
+            <textarea name="content" class="materialize-textarea" required></textarea>
+            <label for="content">Your Message</label>
+        </div>
+        <button type="submit" class="btn waves-effect waves-light blue">Post</button>
+    </form>
+    
+    <!-- Add a delete room button -->
+    <a href="{% url 'delete_room' room.id %}" class="btn waves-effect waves-light red">Delete Room</a>
+
+    <br>
+    <a href="{% url 'home' %}" class="btn-flat waves-effect">Back to Home</a>
+</div>
+
+<!-- Import Materialize JS -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
 </body>
 </html>

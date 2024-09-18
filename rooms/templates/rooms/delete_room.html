@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Delete Room</title>
+    <!-- Import Materialize CSS -->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css" rel="stylesheet">
+</head>
+<body>
+
+<nav>
+    <div class="nav-wrapper blue">
+        <a href="{% url 'home' %}" class="brand-logo center">Delete Room</a>
+    </div>
+</nav>
+
+<div class="container">
+    <h5>Delete Room: {{ room.name }}</h5>
+    <p>To delete this room, please enter the password:</p>
+
+    <form method="POST">
+        {% csrf_token %}
+        <div class="input-field">
+            <input type="password" id="password" name="password" required>
+            <label for="password">Enter Password</label>
+        </div>
+        <button type="submit" class="btn waves-effect waves-light red">Delete Room</button>
+    </form>
+
+    <br>
+    <a href="{% url 'room_detail' room.id %}" class="btn-flat waves-effect">Back to Room</a>
+</div>
+
+<!-- Import Materialize JS -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+</body>
+</html>
